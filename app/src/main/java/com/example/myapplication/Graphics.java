@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.*;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.*;
 import android.view.MotionEvent;
@@ -10,12 +11,15 @@ import android.view.View;
 
 import java.lang.*;
 
+import androidx.annotation.RequiresApi;
+
 public class Graphics extends View {
     private int numColumns, numRows;
     private int cellWidth, cellHeight;
     private Paint blackPaint = new Paint();
     private Paint greyPaint = new Paint();
     private Paint yellowPaint = new Paint();
+    //use string list to convert to these two.
     private boolean[][] cellChecked;
     private int[][] pieceColor;
     private int checkflag = 1;
@@ -36,6 +40,7 @@ public class Graphics extends View {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void setNumColumns(int numColumns) {
         this.numColumns = numColumns;
         calculateDimensions();
@@ -45,6 +50,7 @@ public class Graphics extends View {
         return numColumns;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void setNumRows(int numRows) {
         this.numRows = numRows;
         calculateDimensions();
@@ -54,6 +60,7 @@ public class Graphics extends View {
         return numRows;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -68,6 +75,7 @@ public class Graphics extends View {
         setMeasuredDimension(width, height);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void calculateDimensions() {
         if (numColumns < 1 || numRows < 1) {
             return;
@@ -76,8 +84,8 @@ public class Graphics extends View {
         cellWidth = getHeight() / numColumns;
         cellHeight = getHeight() / numRows;
 
-        cellChecked = new boolean[numColumns][numRows];
-        pieceColor = new int[numColumns][numRows];
+        cellChecked = GameMainActivity.getCheckBoard();
+        pieceColor = GameMainActivity.getPiececolor();
 
         invalidate();
     }
@@ -144,6 +152,7 @@ public class Graphics extends View {
         return "nowin";
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.parseColor("#e8ddc2"));
@@ -210,8 +219,7 @@ public class Graphics extends View {
                     } else {
                         //nothing need to be change
                     }
-                    cellChecked = new boolean[numColumns][numRows];
-                    pieceColor = new int[numColumns][numRows];
+                    GameMainActivity.reinit();
                 }
             }
         }
@@ -235,6 +243,9 @@ public class Graphics extends View {
             int column = (int)(event.getX() / cellWidth);
             int row = (int)(event.getY() / cellHeight);
 
+            Boolean temp = true;
+            int temp2 = 2;
+
             //we will let player1 always play first
             int user = GameMainActivity.current_player();
 
@@ -243,14 +254,14 @@ public class Graphics extends View {
                 checkflag = 2;
                 Log.d("get", "1");
                 GameMainActivity.switch_turn();
-                GameMainActivity.update_entry_board(column,row,1);
+                GameMainActivity.update_entry_board(column,row,"true");
                 GameMainActivity.update_entry_piece(column,row,"1");
             }else{
                 pieceColor[column][row] = 2;
                 checkflag = 1;
                 Log.d("get", "2");
                 GameMainActivity.switch_turn();
-                GameMainActivity.update_entry_board(column,row,1);
+                GameMainActivity.update_entry_board(column,row,"true");
                 GameMainActivity.update_entry_piece(column,row,"2");
             }
 

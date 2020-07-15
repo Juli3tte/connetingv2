@@ -55,7 +55,8 @@ public class CreateGame extends AppCompatActivity {
                         String q = "";
                         q = q + i;
                         String k = "-1";
-                        board_map.put(q, k);
+                        String k2 = "false";
+                        board_map.put(q, k2);
                         piece_map.put(q, k);
                     }
                     Game g = documentSnapshot.toObject(Game.class);
