@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/cover"
+    android:gravity="center"
+    android:padding="10pt"
+    >
+
+
+    <TextView
+        android:id = "@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5pt"
+        android:hint="EMAIL"
+        android:inputType="textEmailAddress"
+        />
+    <EditText
+        android:id="@+id/passowrd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5pt"
+        android:hint="PASSWORD(NUMBER ONLY)"
+        android:inputType="numberPassword"/>
+
+    <Button
+        android:id = "@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding= "5pt"
+        android:text="LOG IN"/>
+
+    <Button
+        android:id = "@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Register Now"/>
+
+    <Button
+        android:id = "@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Test it"/>
+    <Button
+        android:id = "@+id/record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "If your first time, click here"/>
+
+    <TextView
+        android:id = "@+id/display_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <!--    <WebView-->
+<!--        android:id = "@+id/webview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight = "1"-->
+<!--        />-->
+</LinearLayout>

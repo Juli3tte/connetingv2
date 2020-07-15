@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="10pt">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/player1done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Player 1 Done"
+        android:padding = "10dp"
+        />
+    <Button
+        android:id="@+id/player2done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Player 2 Done"
+        android:padding="10dp"
+        />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id = "@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "LEFT"/>
+        <Button
+        android:id = "@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "RIGHT"/>
+        <Button
+        android:id = "@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "UP"/>
+        <Button
+        android:id = "@+id/down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "DOWN"/>
+    </LinearLayout>
+    <Button
+        android:id = "@+id/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "ENTER"/>
+
+
+    <ImageView
+        android:id = "@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/greengrid">
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick = "click5"
+            android:src = "@drawable/lowerleft">
+
+        </ImageView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick = "click6"
+            android:src = "@drawable/lowerright">
+        </ImageView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="click4"
+            android:src = "@drawable/rightup">
+        </ImageView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick = "click3"
+            android:src = "@drawable/upperleft">
+        </ImageView>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:onClick = "click2"
+        android:src = "@drawable/vertical">
+    </ImageView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:onClick="click1"
+        android:src="@drawable/horizontal">
+
+    </ImageView>
+</LinearLayout>
+
+
+    
+
