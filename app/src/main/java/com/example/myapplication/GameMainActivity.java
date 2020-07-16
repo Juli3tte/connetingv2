@@ -33,7 +33,7 @@ public class GameMainActivity extends AppCompatActivity {
     Graphics gameFrame;
     private final int SPLASH_DISPLAY_LENGTH = 7000;
 
-    String username_id;
+    public static String username_id;
     public static View player;
     static String document_name;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -128,7 +128,7 @@ public class GameMainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static int[][] getPiececolor(){
+    public static String[] getPiececolor(){
         final String[][] targetArray = new String[1][1];
         user.document(document_name).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -140,16 +140,11 @@ public class GameMainActivity extends AppCompatActivity {
             }
         });
         String[] array = targetArray[0];
-        int[] arr = Arrays.asList(array).stream().mapToInt(Integer::parseInt).toArray();
-        int array2d[][] = new int[12][12];
-        for(int i=0; i<12;i++)
-            for(int j=0;j<12;j++)
-                array2d[i][j] = arr[(j*10) + i];
-        return array2d;
+        return array;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean[][] getCheckBoard(){
+    public static String[] getCheckBoard(){
         final String[][] targetArray = new String[1][1];
         user.document(document_name).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -162,15 +157,7 @@ public class GameMainActivity extends AppCompatActivity {
         });
         String[] array = targetArray[0];
 
-        boolean[] arr = new boolean[array.length];
-        for (int i = 0; i < array.length; i++)
-            arr[i] = Boolean.parseBoolean(array[i]);
-
-        boolean array2d[][] = new boolean[12][12];
-        for(int i=0; i<12;i++)
-            for(int j=0;j<12;j++)
-                array2d[i][j] = arr[(j*10) + i];
-        return array2d;
+        return array;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -197,6 +184,26 @@ public class GameMainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static Boolean Moveable(){
+        int current_player = current_player();
+        final boolean[] re = {false};
+        user.document(document_name).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Game g = documentSnapshot.toObject(Game.class);
+                assert g != null;
+                List<String> players =  g.getListofplayers();
+                //username_id is the id for this device.
+                if(players.get(current_player).equals(username_id)){
+                    //we get an access!
+                    re[0] = true;
+                }
+            }
+        });
+        return re[0];
     }
 
 }
